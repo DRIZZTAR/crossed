@@ -65,6 +65,20 @@ const BaseCharacter = props => {
 		setKickback({ active: true, time: 0 });
 	}, [camera, crossbowRef, setArrows]);
 
+	// Modify the onHit handler to include collision information
+	const handleArrowHit = (arrowId, collisionEvent) => {
+		// You can do something with the collision event here
+		// For example, check what the arrow hit and apply damage
+		if (collisionEvent) {
+			console.log(`Arrow ${arrowId} hit:`, collisionEvent.body);
+			// You could check what was hit and apply game logic
+			// e.g., if (collisionEvent.body.name === 'enemy') applyDamage();
+		}
+
+		// Remove the arrow
+		removeArrow(arrowId);
+	};
+
 	// Add click event listener
 	useEffect(() => {
 		const handleClick = () => {
@@ -147,7 +161,7 @@ const BaseCharacter = props => {
 					key={arrow.id}
 					position={arrow.position}
 					direction={arrow.direction}
-					onHit={() => removeArrow(arrow.id)}
+					onHit={collisionEvent => handleArrowHit(arrow.id, collisionEvent)}
 					scale={0.25}
 				/>
 			))}

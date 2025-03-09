@@ -11,11 +11,10 @@ const BasicScene = ({ children }) => {
 			<Canvas shadows camera={{ fov: 50 }}>
 				<Stats />
 				<Lights />
-
-				<Physics gravity={[0, -9.8, 0]}>
+				<Physics gravity={[0, -5.8, 0]}>
 					{children}
 
-					<Floor rotation={[Math.PI / -2, 0, 0]} color='white' />
+					<Floor rotation={[Math.PI / -2, 0, 0]} color='black' />
 				</Physics>
 
 				<PointerLockControls />
